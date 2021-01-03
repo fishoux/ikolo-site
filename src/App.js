@@ -3,8 +3,10 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navigation from "./components/Navigation"
 import Footer from "./components/Footer";
+import History from "./components/History";
 import Home from "./components/Home";
-import Scan from "./components/Scan";
+import Plant from "./components/Plant";
+
 import QRcodes from "./components/QRcodes";
 
 function App() {
@@ -14,7 +16,8 @@ function App() {
         <Navigation />
         <Switch>
           <Route path="/" exact component={() => <Home />} />
-          <Route path="/scan" exact component={() => <Scan />} />
+          <Route path="/plant/:id" exact component={() => <Plant />} />
+          <Route path="/history" exact component={() => <History />} />
           <Route path="/qrcodes" exact component={() => <QRcodes />} />
         </Switch>
         <Footer />
