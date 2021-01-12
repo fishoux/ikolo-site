@@ -7,9 +7,9 @@ function Plant() {
   // console.log({id});
   const { id } = useParams();
   const [hasError, setErrors] = useState(false);
-  plants.id = id;
-  const [plants, setPlants] = useState({entries:[]});
 
+  const [plants, setPlants] = useState({entries:[]});
+  plants.id = id;
   useEffect(() => 
 
     fetch(`${process.env.REACT_APP_BACK_GET_URL}${id}`)
