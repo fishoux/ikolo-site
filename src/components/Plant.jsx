@@ -41,7 +41,7 @@ function Plant() {
 
             <Formik
               enableReinitialize
-              initialValues={{ plantSpecies: plants.plantSpecies, plantName: plants.plantName, plantDescription:plants.plantDescription, entries:plants.entries }}
+              initialValues={{ id:plants.id, plantSpecies: plants.plantSpecies, plantName: plants.plantName, plantDescription:plants.plantDescription, entries:plants.entries }}
               onSubmit={values =>
                 setTimeout(() => {
                   fetch(process.env.REACT_APP_BACK_POST_URL, {
