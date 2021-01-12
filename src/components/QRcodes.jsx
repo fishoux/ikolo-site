@@ -18,13 +18,9 @@ function QRcodes() {
           <div className="col-lg-7">
           <QRCode value={urlToken}> </QRCode>
           <br></br>
-          <NavLink
-              className="navbar-item"
-              activeClassName="is-active"
-              to={navToken}
-            >
+          <a href={urlToken}>
               About
-            </NavLink>
+            </a>
           </div>
           <div className="col-lg-5">
             <h1 className="font-weight-light">New QR codes</h1>
