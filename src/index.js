@@ -4,12 +4,12 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-export { default as Footer } from "./components/Footer";
-export { default as History } from "./components/History";
-export { default as Home } from "./components/Home";
-export { default as Navigation } from "./components/Navigation";
-export { default as Plant } from "./components/Plant";
-export { default as QRcodes } from "./components/QRcodes";
+// export { default as Footer } from "./components/Footer";
+// export { default as History } from "./components/History";
+// export { default as Home } from "./components/Home";
+// export { default as Navigation } from "./components/Navigation";
+// export { default as Plant } from "./components/Plant";
+// export { default as QRcodes } from "./components/QRcodes";
 
 ReactDOM.render(
   <React.StrictMode>
