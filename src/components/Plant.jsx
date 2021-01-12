@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { Formik, Form, Field, FieldArray } from 'formik';
+import QRCode from 'qrcode.react';
+
 
 function Plant() {
   
   // console.log({id});
   const { id } = useParams();
+  const urlToken = `${process.env.REACT_APP_SITE_URL}plant/${id}`;
   const [hasError, setErrors] = useState(false);
 
   const [plants, setPlants] = useState({entries:[]});
@@ -31,11 +34,7 @@ function Plant() {
       <div className="container">
         <div className="row align-items-center my-5">
           <div className="col-lg-2">
-            <img
-              className="img-fluid rounded mb-4 mb-lg-0"
-              src="http://placehold.it/100x90"
-              alt=""
-            />
+          <QRCode value={urlToken}> </QRCode>
           </div>
           <div className="col-lg-7">
             <h1 className="font-weight-light"></h1>
