@@ -1,51 +1,22 @@
-import React, { useState, useEffect }from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import { Formik, Form, Field, FieldArray , ErrorMessage } from 'formik';
-import PlantComment from "./PlantComment";
-
-
-// function dispalyObject(object) {
-//   return (
-//     <input type="text" value={object.type} onChange={handleChange} />
-//     );
-// }
-
-// function handleSubmit(event) {
-//   event.preventDefault();
-// }
-
-// function handleChange(event) {
-
-// }
-// function dispalyObject(entry, index) {
-//   if ( entry.type === 'commment' ) {
-//     return (
-//       <Field type="text" name={`${index}-comment`} />
-//     )
-//   }
-// }
-
-// function dispalyTest(entry, index) {
-//   return (
-//       <Field type="text" name={index} />
-//     )
-// }
-
+import { Formik, Form, Field, FieldArray } from 'formik';
 
 function Plant() {
-  const { id } = useParams();
+  
   // console.log({id});
-
+  const { id } = useParams();
   const [hasError, setErrors] = useState(false);
   const [plants, setPlants] = useState({entries:[]});
 
-  useEffect(() =>
-    fetch(`${process.env.REACT_APP_BACK_URL}${id}`)
-      .then(res => res.json())
-      .then(res => { 
-        setPlants(res) ;
-       })
-      .catch(() => setErrors(true)),[] // [] ref of what looking at to refresh the render
+  useEffect(() => 
+
+    fetch(`${process.env.REACT_APP_BACK_GET_URL}${id}`)
+    .then(res => res.json())
+    .then(res => { 
+      setPlants(res) ;
+     })
+    .catch(() => setErrors(true)),[] // [] ref of what looking at to refresh the render
   );
 
   // console.log({plants});
@@ -73,7 +44,14 @@ function Plant() {
               initialValues={{ plantSpecies: plants.plantSpecies, plantName: plants.plantName, plantDescription:plants.plantDescription, entries:plants.entries }}
               onSubmit={values =>
                 setTimeout(() => {
-                  alert(JSON.stringify(values, null, 2));
+                  fetch(process.env.REACT_APP_BACK_POST_URL, {
+                    method: "POST",
+                    body: JSON.stringify(values),
+                    headers: {"Content-type": "application/json; charset=UTF-8"}
+                  })
+                  .then(response => response.json())
+                  .catch(err => console.log(err));
+                  
                 }, 500)
               }
               render={({ values }) => (    
@@ -91,7 +69,6 @@ function Plant() {
                             <div key={index}>
                               {/** both these conventions do the same */}
                               <Field name={`entries[${index}].name`} />
-                  
                               <button type="button" onClick={() => arrayHelpers.remove(index)}>
                                 -
                               </button>
@@ -100,24 +77,13 @@ function Plant() {
                           ))}
                           <button
                             type="button"
-                            onClick={() => arrayHelpers.push({ name: '', age: '' })}
+                            onClick={() => arrayHelpers.push({ type:'comment', name: ''})}
                           >
                             +
                           </button>
                         </div>
                       )}
                     />
-                    
-                 
-                  
-                  {
-                    plants.entries.map( (entry, index) => {
-                      <div key={index}>
-                         <label htmlFor={`friends.${index}`}>First Name</label>
-                        <Field type="text" name={`friends.${index}`} />
-                      </div>
-                    })
-                  }
                   <button type="submit">
                     Submit
                   </button>

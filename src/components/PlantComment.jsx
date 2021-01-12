@@ -1,11 +1,10 @@
-import React, { useState, useEffect }from "react";
-import { useParams } from "react-router";
-import { Formik, Form, Field, FieldArray , ErrorMessage } from 'formik';
+import Reactfrom from "react";
 
 function PlantComment(initialValue, createdOn, modifiedOn) {
   
   return (
     <p>
+    {modifiedOn}
       {createdOn}
     <br />
     {initialValue}</p>
