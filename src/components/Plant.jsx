@@ -3,7 +3,6 @@ import { useParams } from "react-router";
 import { Formik, Form, Field, FieldArray } from 'formik';
 import QRCode from 'qrcode.react';
 
-
 function Plant() {
   
   // console.log({id});
@@ -14,7 +13,7 @@ function Plant() {
   const [plants, setPlants] = useState({entries:[]});
   plants.id = id;
   useEffect(() => 
-
+  
     fetch(`${process.env.REACT_APP_BACK_GET_URL}${id}`)
     .then(res => res.json())
     .then(res => { 
